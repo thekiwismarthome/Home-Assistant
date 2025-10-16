@@ -13,13 +13,24 @@ triggers:
     to: "on"
 conditions: []
 actions:
-  - action: script.fire_smoke_alarm_notifications
-    data: {}
   - action: notify.mobile_app_sm_s901e
     metadata: {}
     data:
+      message: command_ringer_mode
+      data:
+        command: normal
+        priority: high
+  - action: notify.mobile_app_sm_s901e 
+    data:
       title: 🔥🔥 FIRE ALARM 🔥🔥
       message: "{{ trigger.to_state.attributes.friendly_name }} has detected smoke!"
+      data:
+        ttl: 0
+        tag: Fire Alarm
+        priority: high
+        vibrationPattern: 100, 1000, 100, 1000, 100
+        channel: fire_alarm_stream
+        media_stream: alarm_stream_max
   - action: notify.mobile_app_claudias_phone
     metadata: {}
     data:
