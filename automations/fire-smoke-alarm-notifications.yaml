@@ -1,5 +1,16 @@
 alias: 🔥🔥 FIRE SMOKE ALARM Notifications 🔥🔥
-description: ""
+description: >
+  # 🔥🔥 FIRE SMOKE ALARM Notifications 🔥🔥  
+
+  This automation is triggered when any of the listed Smoke Alarms are triggered
+  to a stae of "on". It will then send a notification to the listed phones, they
+  must have the HA Companion App installed. A visualk notification is sent also
+  an alarm will be triggered at top volume for the channel: fire_alarm_stream.
+  You can change the channels notification ring by going to the HA Companion App
+  > Settings > Companion app >  scroll down to Notifications > Notification
+  channels and choose the channel you created. Edit it and change  the sound you
+  want to use.
+
 triggers:
   - trigger: state
     entity_id:
@@ -20,7 +31,7 @@ actions:
       data:
         command: normal
         priority: high
-  - action: notify.mobile_app_sm_s901e 
+  - action: notify.mobile_app_sm_s901e
     data:
       title: 🔥🔥 FIRE ALARM 🔥🔥
       message: "{{ trigger.to_state.attributes.friendly_name }} has detected smoke!"
