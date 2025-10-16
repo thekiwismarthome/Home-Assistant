@@ -1,0 +1,25 @@
+alias: Find Brents Phone
+# to change the channel ringtone, go to the HA companion app > 
+# Notifications > Notification channels and chose the chanel you created
+sequence:
+  - action: notify.mobile_app_sm_s901e
+    metadata: {}
+    data:
+      message: command_ringer_mode
+      data:
+        command: normal
+        priority: high
+  - data:
+      message: " "
+      title: Find My Phone
+      data:
+        ttl: 0
+        tag: Find My Phone
+        priority: high
+        vibrationPattern: 100, 1000, 100, 1000, 100
+        channel: find_my_phone
+        media_stream: alarm_stream_max
+    action: notify.mobile_app_sm_s901e
+mode: single
+icon: mdi:phone
+description: ""
