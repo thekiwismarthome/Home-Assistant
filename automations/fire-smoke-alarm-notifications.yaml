@@ -1,0 +1,39 @@
+alias: 🔥🔥 FIRE SMOKE ALARM Notifications 🔥🔥
+description: ""
+triggers:
+  - trigger: state
+    entity_id:
+      - binary_sensor.smoke_alarm_garage_ias_zone
+      - binary_sensor.smoke_alarm_hallway
+      - binary_sensor.heiman_smokesensor_ef_3_0_smoke
+      - binary_sensor.smoke_alarm_lounge_ias_zone
+      - binary_sensor.smoke_alarm_kitchen_smoke
+      - binary_sensor.smoke_alarm_master_bedroom_2_ias_zone
+      - binary_sensor.smoke_alarm_upper_hallway_smoke_2
+    to: "on"
+conditions: []
+actions:
+  - action: notify.mobile_app_sm_s901e
+    metadata: {}
+    data:
+      title: 🔥🔥 FIRE ALARM 🔥🔥
+      message: "{{ trigger.to_state.attributes.friendly_name }} has detected smoke!"
+      data:
+        command: normal
+        ttl: 0
+        tag: Fire Alarm
+        priority: high
+        vibrationPattern: 100, 1000, 100, 1000, 100, 1000, 100, 1000, 100
+        channel: fire_alarm_stream
+        media_stream: alarm_stream_max
+  - action: notify.mobile_app_claudias_phone
+    metadata: {}
+    data:
+      title: 🔥🔥 FIRE ALARM 🔥🔥
+      message: "{{ trigger.to_state.attributes.friendly_name }} has detected smoke!"
+  - action: notify.mobile_app_sm_s901e
+    metadata: {}
+    data:
+      message: command_ringer_mode
+      data:
+mode: single
